@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Common
+﻿namespace Common
 {
-    internal class ClientCommands
+    public static class ClientCommands
     {
+        public const string CreateWorld = "CREATE";
+        public const string JoinWorld = "JOIN";
+        public const string PlaceWorld = "PIXEL";
+        public const string ListWorld = "LIST";
+    }
+    public static class ServerCommands
+    {
+        public const string WorldState = "STATE";
+        public const string PixelPlaced = "PIXEL_OK";
+        public const string Error = "ERROR";
+        public const string WorldList = "WORLDS";
     }
 }
