@@ -6,8 +6,8 @@ namespace Common
         {
             public const string CreateWorld = "CREATE";
             public const string JoinWorld = "JOIN";
-            public const string PlaceWorld = "PIXEL";
-            public const string ListWorld = "LIST";
+            public const string PlacePixel = "PIXEL";
+            public const string ListWorlds = "LIST";
         }
         public static class ServerCommands
         {
