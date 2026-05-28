@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             btnConnect = new Button();
             TextServerIP = new TextBox();
@@ -47,6 +48,7 @@
             btnColor0 = new Button();
             lblStatus = new Label();
             lblCooldown = new Label();
+            coldownTimer = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -277,5 +279,6 @@
         private Button btnColor4;
         private Label lblStatus;
         private Label lblCooldown;
+        private System.Windows.Forms.Timer coldownTimer;
     }
 }
