@@ -34,8 +34,8 @@ namespace Common
             Color.Red,
             Color.Green,
             Color.Blue,
-            Color.Magenta,
             Color.Yellow,
+            Color.Magenta,
             Color.Cyan
             };
             public static Color GetColor(byte index) => Colors[index % Colors.Length];
