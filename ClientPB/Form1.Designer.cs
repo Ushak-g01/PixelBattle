@@ -33,7 +33,7 @@
             btnConnect = new Button();
             TextServerIP = new TextBox();
             canvas = new Panel();
-            woroldList = new ComboBox();
+            worldList = new ComboBox();
             btnJoin = new Button();
             btnCreate = new Button();
             btnRefresh = new Button();
@@ -69,6 +69,7 @@
             btnConnect.TabIndex = 1;
             btnConnect.Text = "Подключиться к серверу";
             btnConnect.UseVisualStyleBackColor = true;
+            btnConnect.Click += btnConnect_Click;
             // 
             // TextServerIP
             // 
@@ -87,14 +88,14 @@
             canvas.TabIndex = 3;
             canvas.Paint += canvas_Paint;
             // 
-            // woroldList
+            // worldList
             // 
-            woroldList.Enabled = false;
-            woroldList.FormattingEnabled = true;
-            woroldList.Location = new Point(12, 151);
-            woroldList.Name = "woroldList";
-            woroldList.Size = new Size(196, 23);
-            woroldList.TabIndex = 4;
+            worldList.Enabled = false;
+            worldList.FormattingEnabled = true;
+            worldList.Location = new Point(12, 151);
+            worldList.Name = "worldList";
+            worldList.Size = new Size(196, 23);
+            worldList.TabIndex = 4;
             // 
             // btnJoin
             // 
@@ -116,6 +117,7 @@
             btnCreate.TabIndex = 6;
             btnCreate.Text = "Создать мир";
             btnCreate.UseVisualStyleBackColor = true;
+            btnCreate.Click += btnCreate_Click;
             // 
             // btnRefresh
             // 
@@ -126,6 +128,7 @@
             btnRefresh.TabIndex = 7;
             btnRefresh.Text = "Обновить список миров";
             btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += btnRefresh_Click;
             // 
             // panel1
             // 
@@ -245,7 +248,7 @@
             Controls.Add(btnRefresh);
             Controls.Add(btnCreate);
             Controls.Add(btnJoin);
-            Controls.Add(woroldList);
+            Controls.Add(worldList);
             Controls.Add(canvas);
             Controls.Add(TextServerIP);
             Controls.Add(btnConnect);
@@ -264,7 +267,7 @@
         private Button btnConnect;
         private TextBox TextServerIP;
         private Panel canvas;
-        private ComboBox woroldList;
+        private ComboBox worldList;
         private Button btnJoin;
         private Button btnCreate;
         private Button btnRefresh;
