@@ -183,7 +183,7 @@ namespace ClientPB
             var y = e.Y / _cellSize;
 
             if (x >= 0 && x < _currentWorld.Width && y >= 0 && y < _currentWorld.Height)
-                {
+            {
                 var now = DateTime.UtcNow;
                 if ((now - _lastPixelTime).TotalSeconds < 3)
                 {
@@ -194,7 +194,16 @@ namespace ClientPB
                 _lastPixelTime = now;
                 _currentWorld.Pixels[x, y] = (byte)_selectedColor;
                 canvas.Invalidate();
-                }
+            }
+        }
+
+        private void coldownTimer_Tick(object sender, EventArgs e)
+        {
+            var elapsed = (DateTime.UtcNow - _lastPixelTime).TotalSeconds;
+            if (elapsed < 3)
+                lblCooldown.Text = $"КД: {(3 - elapsed):F1} сек";
+            else
+                lblCooldown.Text = "Готов к рисовки пикселя";
         }
     }
 }
