@@ -87,6 +87,7 @@
             canvas.Size = new Size(500, 500);
             canvas.TabIndex = 3;
             canvas.Paint += canvas_Paint;
+            canvas.MouseClick += canvas_MouseClickAsync;
             // 
             // worldList
             // 
@@ -256,7 +257,6 @@
             Enabled = false;
             Name = "Form1";
             Text = "Form1";
-            MouseClick += Form1_MouseClickAsync;
             panel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();

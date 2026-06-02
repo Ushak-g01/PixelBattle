@@ -176,7 +176,7 @@ namespace ClientPB
             lblStatus.Text = "Не удалось загрузить список миров после 3 попыток";
         }
 
-        private async Task Form1_MouseClickAsync(object sender, MouseEventArgs e)
+        private async void canvas_MouseClickAsync(object sender, MouseEventArgs e)
         {
             if (_currentWorld == null) return;
 
@@ -189,11 +189,11 @@ namespace ClientPB
 
                 if ((now - _lastPixelTime).TotalSeconds < 3)
                 {
-                    lblStatus.Text = \$"Подождите {3 - (now - _lastPixelTime).TotalSeconds:F1} секунд";
+                    lblStatus.Text = $"Подождите {3 - (now - _lastPixelTime).TotalSeconds:F1} секунд";
                     return;
                 }
 
-                await _writer.WriteLineAsync(\$"{ClientCommands.PlacePixel}|{_currentWorld.Id}|{x}|{y}|{_selectedColor}");
+                await _writer.WriteLineAsync($"{ClientCommands.PlacePixel}|{_currentWorld.Id}|{x}|{y}|{_selectedColor}");
                 _lastPixelTime = now;
                 _currentWorld.Pixels[x, y] = (byte)_selectedColor;
                 canvas.Invalidate();
