@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Security;
 using Common;
+using System.IO;
 
 namespace ClientPB
 {
@@ -208,6 +209,44 @@ namespace ClientPB
             else
                 lblCooldown.Text = "Готов к пикселю!";
         }
+        private async Task ListenToServer()
+        {
+            try
+            {
+                string line;
+                while ((line = await _reader.ReadLineAsync()) != null)
+                {
+                    this.Invoke(() => ProcessServerMessage(line));
+                }
+            }
+            catch { }
+        }
+        private void ProcessServerMessage(string msg)
+        {
+            var parts = msg.Split('|');
+            switch (parts[0])
+            {
+                case ServerCommands.WorldList:
+                    break;
+                case ServerCommands.WorldState:
+                    break;
+                case ServerCommands.PixelPlaced:
+                    if (parts.Length >= 5 && int.Parse(parts[1]) == _currentWorldId)
+                    {
+                        int x = int.Parse(parts[2]);
+                        int y = int.Parse(parts[3]);
+                        int color = int.Parse(parts[4]);
 
+                        if (_currentWorld?.Pixels != null && x >= 0 && x < _currentWorld.Width && y >= 0 && y < _currentWorld.Height)
+                        {
+                            _currentWorld.Pixels[x, y] = (byte)color;
+                            canvas.Invalidate();
+                        }
+                    }
+                    break;
+                case ServerCommands.Error:
+                    break;
+            }
+        }
     }
-}
+}   
