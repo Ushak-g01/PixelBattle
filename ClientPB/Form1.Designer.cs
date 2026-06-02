@@ -256,6 +256,7 @@
             Enabled = false;
             Name = "Form1";
             Text = "Form1";
+            MouseClick += Form1_MouseClickAsync;
             panel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
