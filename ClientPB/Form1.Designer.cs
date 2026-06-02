@@ -238,6 +238,10 @@
             lblCooldown.TabIndex = 10;
             lblCooldown.Text = "КД:";
             // 
+            // coldownTimer
+            // 
+            coldownTimer.Tick += coldownTimer_Tick;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
