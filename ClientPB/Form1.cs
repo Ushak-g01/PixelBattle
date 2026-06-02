@@ -1,8 +1,9 @@
 using System.Net.Sockets;
-using Common;
+using System.Data.Common;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Security;
+using Common;
 
 namespace ClientPB
 {
@@ -68,7 +69,17 @@ namespace ClientPB
 
         private void canvas_Paint(object sender, PaintEventArgs e)
         {
+            if (_currentWorld?.Pixels == null) return;
 
+            for (int x=0; x < _currentWorld.Width; x++)
+            {
+                for (int y = 0; y < _currentWorld.Height; y++)
+                {
+                    var color = ColorPalette.GetColor(_currentWorld.Pixels[x, y]);
+                    using var brush = new SolidBrush(color);
+                    e.Graphics.FillRectangle(brush, x * _cellSize, y * _cellSize, _cellSize, _cellSize);
+                }
+            }
         }
 
         private async void button2_Click(object sender, EventArgs e)
