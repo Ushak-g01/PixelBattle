@@ -141,10 +141,10 @@ namespace ClientPB
 
         private async Task ListenToServer()
         {
-            try 
+            try
             {
                 string line;
-                while ((line = await _reader.ReadLineAsync()) != null) 
+                while ((line = await _reader.ReadLineAsync()) != null)
                 {
                     this.Invoke(() => ProcessServerMessage(line));
                 }
@@ -184,7 +184,7 @@ namespace ClientPB
                             Console.WriteLine($"Ошибка парсинга мира: {entry}");
                         }
                     }
-                    lblStatus.Text = $"Загружено миров: {worldList.Items.Count}"; 
+                    lblStatus.Text = $"Загружено миров: {worldList.Items.Count}";
                     break;
                 case ServerCommands.WorldState:
                     _currentWorldId = int.Parse(parts[1]);
@@ -224,7 +224,7 @@ namespace ClientPB
                     break;
             }
         }
-        
+
 
         class WorldItem
         {
