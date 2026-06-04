@@ -1,2 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using Server;
+using System.Net;
+var server = new GameServer();
+
+Console.WriteLine("Сервер запущен. Доступные IP для подключения:");
+foreach (var ip in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
+{
+    if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+        Console.WriteLine($" {ip}");
+}
+server.Start();
