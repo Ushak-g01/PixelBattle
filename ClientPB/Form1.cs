@@ -158,8 +158,54 @@ namespace ClientPB
             switch (parts[0])
             {
                 case ServerCommands.WorldList:
+                    _availableWorlds.Clear();
+                    worldList.Items.Clear();
+                    string worldsData = msg.Substring("WORLDS".Length + 1);
+                    if (string.IsNullOrEmpty(worldsData))
+                    {
+                        lblStatus.Text = "Нет доступных миров";
+                        break;
+                    }
+                    string[] worldEntries = worldsData.Split(';');
+                    foreach (string entry in worldEntries)
+                    {
+                        string[] worldInfo = entry.Split('|');
+                        if (worldInfo.Length >= 4)
+                        {
+                            int id = int.Parse(worldInfo[0]);
+                            string name = worldInfo[1];
+                            string size = worldInfo[2];
+                            int players = int.Parse(worldInfo[3]);
+                            _availableWorlds[id] = name;
+                            worldList.Items.Add(new WorldItem { Id = id, Name = $"{name} [{size}, игроков: {players}]" });
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Ошибка парсинга мира: {entry}");
+                        }
+                    }
+                    lblStatus.Text = $"Загружено миров: {worldList.Items.Count}"; 
                     break;
                 case ServerCommands.WorldState:
+                    _currentWorldId = int.Parse(parts[1]);
+                    _currentWorld = new WorldState
+                    {
+                        Id = _currentWorldId,
+                        Name = parts[2],
+                        Width = int.Parse(parts[3]),
+                        Height = int.Parse(parts[4])
+                    };
+                    var pixelData = parts[5];
+                    _currentWorld.Pixels = new byte[_currentWorld.Width, _currentWorld.Height];
+                    for (int y = 0; y < _currentWorld.Height; y++)
+                    {
+                        for (int x = 0; x < _currentWorld.Width; x++)
+                        {
+                            _currentWorld.Pixels[x, y] = byte.Parse(parts[y * _currentWorld.Width + x]);
+                        }
+                    }
+                    this.Text = $"Pixel Battle{_currentWorld.Name} ({_currentWorld.Width} х {_currentWorld.Height})";
+                    canvas.Invalidate();
                     break;
                 case ServerCommands.PixelPlaced:
                     if (parts.Length >= 5 && int.Parse(parts[1]) == _currentWorldId)
