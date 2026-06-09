@@ -82,7 +82,7 @@ namespace ClientPB
             }
         }
 
-        private async void button2_Click(object sender, EventArgs e)
+        private async void btnJoin_Click(object sender, EventArgs e)
         {
             if (worldList.SelectedItem == null)
             {

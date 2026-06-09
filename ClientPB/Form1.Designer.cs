@@ -107,7 +107,7 @@
             btnJoin.TabIndex = 5;
             btnJoin.Text = "Зайти на мир";
             btnJoin.UseVisualStyleBackColor = true;
-            btnJoin.Click += button2_Click;
+            btnJoin.Click += btnJoin_Click;
             // 
             // btnCreate
             // 
