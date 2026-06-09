@@ -82,7 +82,7 @@ namespace ClientPB
             }
         }
 
-        private async void button2_Click(object sender, EventArgs e)
+        private async void btnJoin_Click(object sender, EventArgs e)
         {
             if (worldList.SelectedItem == null)
             {
@@ -201,7 +201,7 @@ namespace ClientPB
                     {
                         for (int x = 0; x < _currentWorld.Width; x++)
                         {
-                            _currentWorld.Pixels[x, y] = byte.Parse(parts[y * _currentWorld.Width + x]);
+                            _currentWorld.Pixels[x, y] = byte.Parse(pixelData[y * _currentWorld.Width + x].ToString());
                         }
                     }
                     this.Text = $"Pixel Battle{_currentWorld.Name} ({_currentWorld.Width} õ {_currentWorld.Height})";
